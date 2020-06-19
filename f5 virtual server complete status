@@ -1,0 +1,20 @@
+from netmiko.f5.f5_linux_ssh import F5LinuxSSH
+from netmiko.f5.f5_tmsh_ssh import F5TmshSSH
+from _datetime import datetime
+from netmiko import ConnectHandler
+
+start_time = datetime.now()
+print(start_time)
+
+F5TmshSSH = {
+        'device_type': 'f5_tmsh',
+        'ip': '192.168.145.129',
+        'username': 'root',
+        'password': 'nareshplay',
+    }
+net_connect = ConnectHandler(**F5TmshSSH)
+output = net_connect.send_command('show ltm virtual ' + input('Enter the virtual server Name "space detail":'))
+with open('f5tmshoutput.txt','w') as f:
+    f.write(output)
+print("-----------------------------END--------------------------------------------------")
+
